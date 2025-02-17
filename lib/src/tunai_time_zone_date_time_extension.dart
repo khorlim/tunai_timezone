@@ -13,6 +13,20 @@ extension TunaiTimeZoneDateTimeExtension on DateTime {
     int? microsecond,
     tz.Location? location,
   }) {
+    if (this is tz.TZDateTime) {
+      return tz.TZDateTime(
+        (this as tz.TZDateTime).location,
+        year ?? this.year,
+        month ?? this.month,
+        day ?? this.day,
+        hour ?? this.hour,
+        minute ?? this.minute,
+        second ?? this.second,
+        millisecond ?? this.millisecond,
+        microsecond ?? this.microsecond,
+      );
+    }
+
     return tz.TZDateTime(
       location ?? TunaiTimezone.location,
       year ?? this.year,
