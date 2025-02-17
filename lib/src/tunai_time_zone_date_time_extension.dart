@@ -13,7 +13,7 @@ extension TunaiTimeZoneDateTimeExtension on DateTime {
     int? microsecond,
     tz.Location? location,
   }) {
-    if (this is tz.TZDateTime) {
+    if (this is tz.TZDateTime && location == null) {
       return tz.TZDateTime(
         (this as tz.TZDateTime).location,
         year ?? this.year,
