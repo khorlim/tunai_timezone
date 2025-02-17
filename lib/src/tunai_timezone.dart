@@ -23,7 +23,7 @@ class TunaiTimezone {
     tz.initializeTimeZones();
   }
 
-  static DateTime now() {
-    return DateTime.now().toTz();
+  static DateTime now({tz.Location? location}) {
+    return DateTime.now().toTz(location: location);
   }
 }
