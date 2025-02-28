@@ -1,4 +1,4 @@
-import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:tunai_timezone/src/time_zone_name.dart';
 import 'package:tunai_timezone/tunai_timezone.dart';
@@ -19,7 +19,7 @@ class TunaiTimezone {
     }
   }
 
-  static void init() {
+  static void init() async {
     tz.initializeTimeZones();
   }
 
