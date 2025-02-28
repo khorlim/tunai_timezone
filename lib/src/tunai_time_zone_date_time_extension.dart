@@ -11,9 +11,10 @@ extension TunaiTimeZoneDateTimeExtension on DateTime {
     int? second,
     int? millisecond,
     int? microsecond,
+    String? timezoneName,
     tz.Location? location,
   }) {
-    if (this is tz.TZDateTime && location == null) {
+    if (this is tz.TZDateTime && location == null && timezoneName == null) {
       return tz.TZDateTime(
         (this as tz.TZDateTime).location,
         year ?? this.year,
@@ -28,7 +29,7 @@ extension TunaiTimeZoneDateTimeExtension on DateTime {
     }
 
     return tz.TZDateTime(
-      location ?? TunaiTimezone.location,
+      location ?? timezoneName?.toTzLocation() ?? TunaiTimezone.location,
       year ?? this.year,
       month ?? this.month,
       day ?? this.day,
@@ -40,8 +41,11 @@ extension TunaiTimeZoneDateTimeExtension on DateTime {
     );
   }
 
-  DateTime toTz({tz.Location? location}) {
-    return tz.TZDateTime.from(this, location ?? TunaiTimezone.location);
+  DateTime toTz({tz.Location? location, String? timezoneName}) {
+    return tz.TZDateTime.from(
+      this,
+      location ?? timezoneName?.toTzLocation() ?? TunaiTimezone.location,
+    );
   }
 }
 
