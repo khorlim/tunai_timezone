@@ -2,6 +2,18 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:tunai_timezone/src/tunai_timezone.dart';
 
 extension TunaiTimeZoneDateTimeExtension on DateTime {
+  DateTime truncateToDayWithTz() {
+    if (this is tz.TZDateTime) {
+      return tz.TZDateTime(
+        (this as tz.TZDateTime).location,
+        year,
+        month,
+        day,
+      );
+    }
+    return DateTime(year, month, day);
+  }
+
   DateTime copyWithTz({
     int? year,
     int? month,
